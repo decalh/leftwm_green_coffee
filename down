@@ -1,15 +1,11 @@
 #!/bin/bash
 
+# magic from "Coffee" leftwm theme
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-
-#set background
-if [ -x "$(command -v feh)" ]; then
-  feh --bg-scale $SCRIPTPATH/reset.jpg
-fi
 
 echo "UnloadTheme" > $XDG_RUNTIME_DIR/leftwm/commands.pipe
 
-pkill compton 
+# shutdown everything we started, the bg will remain until
+# feh or some other theme or the user sets a new one, idgaf
+pkill picom
 pkill polybar
-pkill xwinwrap
-
